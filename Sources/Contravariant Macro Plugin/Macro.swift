@@ -1,6 +1,6 @@
 import SwiftSyntax
 import SwiftSyntaxMacros
-import Contravariant_Derivation_Core
+import Contravariant_Macro_Core
 
 public struct Macro: MemberMacro {
     public static func expansion(

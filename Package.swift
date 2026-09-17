@@ -4,38 +4,38 @@ import CompilerPluginSupport
 import PackageDescription
 
 let package = Package(
-    name: "swift-contravariant-derivation",
+    name: "swift-contravariant",
     products: [
-        .library(name: "Contravariant Derivation", targets: ["Contravariant Derivation"]),
-        .library(name: "Contravariant Derivation Core", targets: ["Contravariant Derivation Core"]),
+        .library(name: "Contravariant Macro", targets: ["Contravariant Macro"]),
+        .library(name: "Contravariant Macro Core", targets: ["Contravariant Macro Core"]),
     ],
     dependencies: [
         .package(url: "https://github.com/swiftlang/swift-syntax.git", "603.0.2"..<"604.0.0")
     ],
     targets: [
         .target(
-            name: "Contravariant Derivation Core",
+            name: "Contravariant Macro Core",
             dependencies: [
                 .product(name: "SwiftSyntax", package: "swift-syntax"),
                 .product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
             ]
         ),
         .macro(
-            name: "Contravariant Derivation Macros",
+            name: "Contravariant Macro Plugin",
             dependencies: [
-                "Contravariant Derivation Core",
+                "Contravariant Macro Core",
                 .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
                 .product(name: "SwiftSyntax", package: "swift-syntax"),
                 .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
             ]
         ),
         .target(
-            name: "Contravariant Derivation",
-            dependencies: ["Contravariant Derivation Macros"]
+            name: "Contravariant Macro",
+            dependencies: ["Contravariant Macro Plugin"]
         ),
         .testTarget(
-            name: "Contravariant Derivation Tests",
-            dependencies: ["Contravariant Derivation"]
+            name: "Contravariant Macro Tests",
+            dependencies: ["Contravariant Macro"]
         ),
     ],
     swiftLanguageModes: [.v6]

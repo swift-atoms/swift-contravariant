@@ -1,4 +1,4 @@
-import Contravariant_Derivation
+import Contravariant_Macro
 import Testing
 
 @Contravariant
