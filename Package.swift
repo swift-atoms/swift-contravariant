@@ -26,7 +26,7 @@ let package = Package(
         .macro(
             name: "Contravariant Macro Plugin",
             dependencies: [
-                "Contravariant Macro Core",
+                .target(name: "Contravariant Macro Core"),
                 .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
                 .product(name: "SwiftSyntax", package: "swift-syntax"),
                 .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
@@ -34,17 +34,17 @@ let package = Package(
         ),
         .target(
             name: "Contravariant Macro",
-            dependencies: ["Contravariant Macro Plugin"]
+            dependencies: [.target(name: "Contravariant Macro Plugin")]
         ),
         .testTarget(
             name: "Contravariant Macro Tests",
-            dependencies: ["Contravariant Macro"]
+            dependencies: [.target(name: "Contravariant Macro")]
         ),
     ],
     swiftLanguageModes: [.v6]
 )
 
-for target in package.targets where ![.system, .binary, .plugin].contains(target.type) {
+for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
     target.swiftSettings = (target.swiftSettings ?? []) + [
         .strictMemorySafety(),
         .enableUpcomingFeature("ExistentialAny"),
