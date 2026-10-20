@@ -1,6 +1,6 @@
+import Contravariant_Macro_Core
 public import SwiftSyntax
 public import SwiftSyntaxMacros
-import Contravariant_Macro_Core
 
 public struct Macro: MemberMacro {}
 

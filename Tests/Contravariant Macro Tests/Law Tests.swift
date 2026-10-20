@@ -1,6 +1,11 @@
 import Contravariant_Macro
 import Testing
-@Contravariant private struct Observers<A> { let first: (A) -> Int; let second: [(A) -> String]; let label: String }
+
+@Contravariant private struct Observers<A> {
+    let first: (A) -> Int
+    let second: [(A) -> String]
+    let label: String
+}
 @Test func contravariantIdentityAndReversedComposition() {
     let value = Observers<Int>(first: { $0 * 2 }, second: [String.init], label: "x")
     let identity = value.contramap { $0 }
